@@ -14,19 +14,25 @@ def readStacks(f) -> list[list[int]]:
      move 3 from 8 to 9\n
      ...
     """
-    line = f.readline().strip()
+    # Get total length of first line including trailing whitespace. This is just so we can calculate the number of stacks.
+    line = f.readline()
+    line_len = len(line)
+    num_stacks = int(line_len / 4)
+
+    # begin line processing
+    line = line.strip()
     line_len = len(line)
     stacks = []
-    num_stacks = int((line_len + 1) / 4)
     for n in range(0, num_stacks):
         stacks.append([])
     while "1" not in line: # stop when we see the index line
         stack_id = 0
         for c in range(1, line_len, 4):
             if line[c] != " ":
-                if stacks[]
                 stacks[stack_id].append(line[c])
             stack_id += 1
+        line = f.readline().strip()
+        line_len = len(line)
     f.readline() # consume the blank line and leave the cursor on the first line of instructions
     return stacks
 
@@ -37,7 +43,7 @@ def part1():
     with open("5_input.txt", "r") as f:
         stacks = readStacks(f)
         line = f.readline()
-        while line is not "":
+        while line != "":
             qty, c1, c2 = parseInstructions(line)
             to_move = stacks[c1][0:qty]
             stacks[c2] = to_move.reverse() + stacks[c2]
